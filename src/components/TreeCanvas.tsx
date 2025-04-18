@@ -105,7 +105,7 @@ const TreeCanvas: React.FC<TreeCanvasProps> = ({
     const currentStep = steps[currentStepIndex];
     if (!currentStep || !currentStep.nodeId) return;
     
-    const updatedTree = applyStepToTree(tree.clone(), currentStep);
+    applyStepToTree(tree.clone(), currentStep);
     updatePositions();
     
   }, [currentStepIndex, steps]);
