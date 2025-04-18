@@ -1,54 +1,79 @@
-# React + TypeScript + Vite
+# 翻转二叉树算法动画演示
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+这个项目是 LeetCode 226 翻转二叉树问题的交互式可视化实现。通过动画效果直观展示了不同解法的执行过程。
 
-Currently, two official plugins are available:
+## 项目特点
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 支持三种翻转二叉树的算法:
+  - 递归解法
+  - 迭代解法 (队列实现)
+  - 迭代解法 (栈实现)
+- 动态展示算法执行过程中的每一步
+- 交互式控制面板，可暂停、播放、单步执行
+- 节点高亮与动画效果直观展示算法执行细节
+- 完全模块化的代码结构，易于理解和扩展
 
-## Expanding the ESLint configuration
+## 技术栈
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React 19
+- TypeScript
+- D3.js 用于树的可视化
+- CSS3 动画效果
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 如何运行
+
+克隆项目后，执行以下命令:
+
+```bash
+# 安装依赖
+npm install
+
+# 开发模式运行
+npm run dev
+
+# 构建项目
+npm run build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 算法说明
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 递归解法
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+递归解法是最简洁的实现方式，通过递归交换每个节点的左右子树实现翻转。
+
+```typescript
+function invertTree(root) {
+  if (!root) return null;
+  
+  const left = invertTree(root.left);
+  const right = invertTree(root.right);
+  
+  root.left = right;
+  root.right = left;
+  
+  return root;
+}
 ```
+
+### 迭代解法 (队列)
+
+使用队列实现广度优先遍历，并在遍历过程中交换每个节点的左右子树。
+
+### 迭代解法 (栈)
+
+使用栈实现深度优先遍历，并在遍历过程中交换每个节点的左右子树。
+
+## 项目结构
+
+```
+src/
+├── algorithms/         # 算法实现代码
+├── components/         # React 组件
+├── models/             # 数据模型定义
+├── utils/              # 工具函数
+└── App.tsx             # 主应用
+```
+
+## 许可证
+
+MIT
