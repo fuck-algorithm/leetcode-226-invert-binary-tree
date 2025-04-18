@@ -1,0 +1,62 @@
+.tree-canvas-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+svg {
+  overflow: visible;
+}
+
+.node circle {
+  transition: all 0.3s ease;
+}
+
+.node text {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+.node.highlighted circle {
+  stroke-width: 3px;
+  filter: drop-shadow(0 0 3px rgba(255, 0, 0, 0.5));
+}
+
+.node.animating circle {
+  animation: pulse 0.7s ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.links path {
+  transition: all 0.3s ease;
+}
+
+.highlighted-path {
+  stroke: #ff6666 !important;
+  stroke-width: 3px !important;
+  stroke-dasharray: 5;
+  animation: dash 1s linear infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 20;
+  }
+} 
