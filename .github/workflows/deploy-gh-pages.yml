@@ -31,9 +31,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20 # 或者指定一个 LTS 版本
-          cache: 'npm'
+          cache: 'yarn'
       - name: Install dependencies
-        run: npm ci # 使用 npm ci 更快更可靠
+        run: yarn install --frozen-lockfile
       - name: Build
         run: npm run build
       - name: Setup Pages
